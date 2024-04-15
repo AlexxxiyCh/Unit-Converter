@@ -1,0 +1,282 @@
+package converter
+
+
+fun main() {
+
+    checkInput()
+
+}
+
+var valueOfUnit = 0.0
+var inputUnit = ""
+var finalUnit = ""
+val lengthSet = setOf(
+    "mm", "millimeter", "millimeters",
+    "cm", "centimeter", "centimeters",
+    "m", "meter", "meters",
+    "km", "kilometer", "kilometers",
+    "in", "inch", "inches",
+    "ft", "foot", "feet",
+    "mi", "mile", "miles",
+    "yd", "yard", "yards")
+
+val weightSet = setOf(
+    "g", "gram", "grams",
+    "kg", "kilogram", "kilograms",
+    "mg", "milligram", "milligrams",
+    "lb", "pound", "pounds",
+    "oz", "ounce", "ounces")
+
+val tempSet = setOf(
+    "degree celsius", "degrees celsius", "celsius", "dc", "c",
+    "degree fahrenheit", "degrees fahrenheit", "fahrenheit", "df", "f",
+    "kelvin", "kelvins", "k")
+
+fun checkInput() {
+    var name1 = ""
+    var name2 = ""
+    var name3 = ""
+    var name4 = ""
+    print("Enter what you want to convert (or exit): ")
+    try {
+        val input = readln().split(" ").map { it }.toList()
+        if (input[0].lowercase() == "exit") {
+            return
+        }
+        valueOfUnit = input[0].toDouble()
+        if (input.size == 4) {
+            inputUnit = input[1].lowercase()
+            finalUnit = input[3].lowercase()
+        } else if (input.size == 5) {
+            if (input[1].lowercase() == "degree" || input[1].lowercase() == "degrees") {
+                inputUnit = input[1].lowercase() + " " + input[2].lowercase()
+                finalUnit = input[4].lowercase()
+            } else {
+                inputUnit = input[1].lowercase()
+                finalUnit = input[3].lowercase() + " " + input[4].lowercase()
+            }
+        } else if (input.size == 6) {
+            inputUnit = input[1].lowercase() + " " + input[2].lowercase()
+            finalUnit = input[4].lowercase() + " " + input[5].lowercase()
+        } else {
+            println("Wrong input: too short or too long")
+        }
+    } catch (e: Exception) {
+        println("Parse error\n")
+        checkInput()
+        return
+    }
+
+    when (inputUnit) {
+        "mm", "millimeter", "millimeters" -> {
+            name1 = "millimeter"
+            name2 = "millimeters"
+        }
+        "cm", "centimeter", "centimeters" -> {
+            name1 = "centimeter"
+            name2 = "centimeters"
+        }
+        "m", "meter", "meters" -> {
+            name1 = "meter"
+            name2 = "meters"
+        }
+        "km", "kilometer", "kilometers" -> {
+            name1 = "kilometer"
+            name2 = "kilometers"
+        }
+        "in", "inch", "inches" -> {
+            name1 = "inch"
+            name2 = "inches"
+        }
+        "ft", "foot", "feet" -> {
+            name1 = "foot"
+            name2 = "feet"
+        }
+        "mi", "mile", "miles" -> {
+            name1 = "mile"
+            name2 = "miles"
+        }
+        "yd", "yard", "yards" -> {
+            name1 = "yard"
+            name2 = "yards"
+        }
+        "g", "gram", "grams" -> {
+            name1 = "gram"
+            name2 = "grams"
+        }
+        "kg", "kilogram", "kilograms" -> {
+            name1 = "kilogram"
+            name2 = "kilograms"
+        }
+        "mg", "milligram", "milligrams" -> {
+            name1 = "milligram"
+            name2 = "milligrams"
+        }
+        "lb", "pound", "pounds" -> {
+            name1 = "pound"
+            name2 = "pounds"
+        }
+        "oz", "ounce", "ounces"  -> {
+            name1 = "ounce"
+            name2 = "ounces"
+        }
+        "degree celsius", "degrees celsius", "celsius", "dc", "c" -> {
+            name1 = "degree Celsius"
+            name2 = "degrees Celsius"
+        }
+        "degree fahrenheit", "degrees fahrenheit", "fahrenheit", "df", "f" -> {
+            name1 = "degree Fahrenheit"
+            name2 = "degrees Fahrenheit"
+        }
+        "kelvin", "kelvins", "k" -> {
+            name1 = "kelvin"
+            name2 = "kelvins"
+        }
+        else -> name2 = "???"
+    }
+
+    when (finalUnit) {
+        "mm", "millimeter", "millimeters" -> {
+            name3 = "millimeter"
+            name4 = "millimeters"
+        }
+        "cm", "centimeter", "centimeters" -> {
+            name3 = "centimeter"
+            name4 = "centimeters"
+        }
+        "m", "meter", "meters" -> {
+            name3 = "meter"
+            name4 = "meters"
+        }
+        "km", "kilometer", "kilometers" -> {
+            name3 = "kilometer"
+            name4 = "kilometers"
+        }
+        "in", "inch", "inches" -> {
+            name3 = "inch"
+            name4 = "inches"
+        }
+        "ft", "foot", "feet" -> {
+            name3 = "foot"
+            name4 = "feet"
+        }
+        "mi", "mile", "miles" -> {
+            name3 = "mile"
+            name4 = "miles"
+        }
+        "yd", "yard", "yards" -> {
+            name3 = "yard"
+            name4 = "yards"
+        }
+        "g", "gram", "grams" -> {
+            name3 = "gram"
+            name4 = "grams"
+        }
+        "kg", "kilogram", "kilograms" -> {
+            name3 = "kilogram"
+            name4 = "kilograms"
+        }
+        "mg", "milligram", "milligrams" -> {
+            name3 = "milligram"
+            name4 = "milligrams"
+        }
+        "lb", "pound", "pounds" -> {
+            name3 = "pound"
+            name4 = "pounds"
+        }
+        "oz", "ounce", "ounces"  -> {
+            name3 = "ounce"
+            name4 = "ounces"
+        }
+        "degree celsius", "degrees celsius", "celsius", "dc", "c" -> {
+            name3 = "degree Celsius"
+            name4 = "degrees Celsius"
+        }
+        "degree fahrenheit", "degrees fahrenheit", "fahrenheit", "df", "f" -> {
+            name3 = "degree Fahrenheit"
+            name4 = "degrees Fahrenheit"
+        }
+        "kelvin", "kelvins", "k" -> {
+            name3 = "kelvin"
+            name4 = "kelvins"
+        }
+        else -> name4 = "???"
+    }
+
+    if (lengthSet.contains(inputUnit) && !lengthSet.contains(finalUnit) ||
+        weightSet.contains(inputUnit) && !weightSet.contains(finalUnit) ||
+        tempSet.contains(inputUnit) && !tempSet.contains(finalUnit)
+        || name2 == "???" || name4 == "???") {
+        println("Conversion from $name2 to $name4 is impossible\n")
+        checkInput()
+        return
+    }
+
+    if (lengthSet.contains(inputUnit) && valueOfUnit < 0) {
+        println("Length shouldn't be negative\n")
+        checkInput()
+        return
+    }
+
+    if (weightSet.contains(inputUnit) && valueOfUnit < 0) {
+        println("Weight shouldn't be negative\n")
+        checkInput()
+        return
+    }
+
+    conversion(valueOfUnit, name1, name2, name3, name4)
+}
+
+fun conversion(num: Double, name1: String, name2: String, name3: String, name4: String) {
+    var inputName = name1
+    var outputName = name3
+    var result = 0.0
+    when (inputName) {
+        "millimeter" -> result = num * 0.001
+        "centimeter" -> result = num * 0.01
+        "meter" -> result = num
+        "kilometer" -> result = num * 1000
+        "inch" -> result = num * 0.0254
+        "foot" -> result = num * 0.3048
+        "mile" -> result = num * 1609.35
+        "yard" -> result = num * 0.9144
+        "gram" -> result = num
+        "kilogram" -> result = num * 1000
+        "milligram" -> result = num * 0.001
+        "pound" -> result = num * 453.592
+        "ounce" -> result = num * 28.3495
+    }
+    when (outputName) {
+        "millimeter" -> result /= 0.001
+        "centimeter" -> result /= 0.01
+        "meter" -> result = result
+        "kilometer" -> result /= 1000
+        "inch" -> result /= 0.0254
+        "foot" -> result /= 0.3048
+        "mile" -> result /= 1609.35
+        "yard" -> result /= 0.9144
+        "gram" -> result = result
+        "kilogram" -> result /= 1000
+        "milligram" -> result /= 0.001
+        "pound" -> result /= 453.592
+        "ounce" -> result /= 28.3495
+    }
+    if (inputName == "degree Celsius") {
+        if (outputName == "degree Celsius") result = num
+        if (outputName == "degree Fahrenheit") result = num * 9 / 5 + 32
+        if (outputName == "kelvin") result = num + 273.15
+    } else if (inputName == "degree Fahrenheit") {
+        if (outputName == "degree Celsius") result = (num - 32) * 5 / 9
+        if (outputName == "degree Fahrenheit") result = num
+        if (outputName == "kelvin") result = (num + 459.67) * 5 / 9
+    } else if (inputName == "kelvin") {
+        if (outputName == "degree Celsius") result = num - 273.15
+        if (outputName == "degree Fahrenheit") result = num * 9 / 5 - 459.67
+        if (outputName == "kelvin") result = num
+    }
+    if (result != 1.0) outputName = name4
+    if (num != 1.0) inputName = name2
+    println("$num $inputName is $result $outputName\n")
+    checkInput()
+}
+
